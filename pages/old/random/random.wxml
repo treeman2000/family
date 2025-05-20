@@ -1,0 +1,11 @@
+<!--pages/random/random.wxml-->
+<input placeholder="输入天数" bindinput="inputDays" />
+<button bindtap="generate">随机一下</button>
+<view wx:for="{{recipes}}" wx:key="*this">
+    <view> ------------------- </view>
+    <view>菜名: {{item.name}}</view>
+    <view>原料: {{item.ingredients}}</view>
+    <view>标签: {{item.tags}}</view>
+  </view>
+
+<view>所有原料：{{ingredients}}</view>

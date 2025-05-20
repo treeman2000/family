@@ -1,0 +1,5 @@
+/* pages/home/home.wxss */
+.search {
+  background-color: var(--bg-color-demo);
+  padding: 16rpx 32rpx;
+}

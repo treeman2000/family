@@ -1,0 +1,6 @@
+<view class="container">
+  <input placeholder="菜名" bindinput="inputName" />
+  <input placeholder="原料（用逗号分隔）" bindinput="inputIngredients" />
+  <input placeholder="标签（如荤菜，素菜，汤）" bindinput="inputTag" />
+  <button bindtap="addRecipe">添加</button>
+</view>

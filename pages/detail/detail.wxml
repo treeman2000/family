@@ -1,0 +1,31 @@
+<!--pages/detail/detail.wxml-->
+<text class="title1" >{{recipeInfo.name}}\n</text>
+
+<view class="tags-container">
+<view wx:for="{{recipeInfo.tags}}" wx:for-index="idx" wx:for-item="itemName" wx:key="*this">
+  <t-tag variant="light" shape="round">{{itemName}}</t-tag>
+</view>
+</view>
+<t-divider />
+
+<text class="title">原料\n</text>
+<view wx:for="{{recipeInfo.ingredients}}" wx:for-index="idx" wx:for-item="ingredient">
+  {{idx+1}}、{{ingredient[0]}} {{ingredient[1]}} {{ingredient[2]}}
+</view>
+<t-divider />
+
+<text class="title">做法\n</text>
+<view wx:for="{{recipeInfo.steps}}" wx:for-index="idx" wx:for-item="itemName">
+  {{idx+1}}、{{itemName}}
+</view>
+<t-divider />
+
+<text class="title">备注\n</text>
+<view wx:for="{{recipeInfo.note}}" wx:for-index="idx" wx:for-item="itemName">
+  {{idx+1}}、{{itemName}}
+</view>
+<t-divider />
+<view class="tags-container">
+<t-button>编辑</t-button>
+<t-button>删除</t-button>
+</view>

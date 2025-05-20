@@ -1,0 +1,25 @@
+/* pages/detail/detail.wxss */
+.title {
+  font-size: 20px;    /* 大字号 */
+  font-weight: bold;  /* 加粗 */
+  margin: 20px 0;    /* 边距 */
+  color: #333;       /* 颜色 */
+}
+
+.title1 {
+  display: block; /* 将 text 转为块级元素 */
+  text-align: center; /* 水平居中 */
+  font-size: 20px;    /* 大字号 */
+  font-weight: bold;  /* 加粗 */
+  margin: 20px 0;    /* 边距 */
+  color: #333;       /* 颜色 */
+}
+
+.tags-container {
+  display: flex;          /* 启用 Flex 布局 */
+  flex-direction: row;    /* 横向排列 */
+  flex-wrap: nowrap;      /* 禁止换行 */
+  gap: 20rpx;             /* 子项间距（小程序需基础库 2.4.0+） */
+  overflow-x: auto;       /* 超出部分横向滚动 */
+  padding: 10rpx 0;       /* 容器内边距 */
+}

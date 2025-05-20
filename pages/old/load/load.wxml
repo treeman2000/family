@@ -1,0 +1,2 @@
+<input placeholder="输入导出的菜谱文件" bindinput="inputRecipesJson" />
+<button bindtap="loadRecipe">导入</button>

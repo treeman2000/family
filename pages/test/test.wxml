@@ -1,0 +1,6 @@
+<!--pages/test/test.wxml-->
+<text>pages/test/test.wxml 222</text>
+<text>{{sc}}</text>
+<button bindtap="loadRecipe">testCloudFunc</button>
+<t-button theme="primary" bindtap="testImportConst">testImportConst</t-button>
+<t-button theme="primary" bindtap="testDb">testDb</t-button>

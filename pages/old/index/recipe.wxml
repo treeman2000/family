@@ -1,0 +1,16 @@
+<view class="container">
+  <!-- <button bindtap="getRandomRecipes">随机3个菜</button> -->
+  <navigator url="../random/random">随机菜谱</navigator>
+  <navigator url="../addRecipe/addRecipe">添加菜谱</navigator>
+  <navigator url="../save/save">导出菜谱</navigator>
+  <navigator url="../load/load">导入菜谱</navigator>
+  <navigator url="../test/test">测试页面</navigator>
+
+  <view wx:for="{{recipes}}" wx:key="*this">
+    <view> ------------------- </view>
+    <view>菜名: {{item.name}}</view>
+    <view>原料: {{item.ingredients}}</view>
+    <view>标签: {{item.tags}}</view>
+  </view>
+
+</view>
