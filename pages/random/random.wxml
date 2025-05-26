@@ -1,2 +1,29 @@
 <!--pages/random/random.wxml-->
 <text>pages/random/random.wxml</text>
+
+<t-input label="做饭天数" placeholder="请输入" type="number" bind:change="handleDay"/>
+<t-input label="每天荤菜数" placeholder="请输入" type="number" bind:change="handleMeat"/>
+<t-input label="每天素菜数" placeholder="请输入" type="number" bind:change="handleVeg"/>
+
+<t-button theme="primary" size="large" variant="outline" block bind:tap="generate">生成</t-button>
+
+<view class="menu-section">
+  <view wx:for="{{recipeOfDays}}" wx:for-index="dayidx" wx:for-item="recipeList" class="day-card">
+
+    <view class="search-container">
+      <t-text class="day-title">第{{dayidx + 1}}天</t-text>
+        <t-search shape="round" class="search" placeholder="搜索菜谱" resultList="{{searchList}}" bind:change="onChangeValue" />
+      <t-button theme="primary" size="small" bind:tap="onAdd" data-dayindex="{{dayidx}}">添加</t-button>
+    </view>
+
+    <view class="recipe-list">
+      <view wx:for="{{recipeList}}" wx:key="_id" class="recipe-item">
+        <text class="recipe-name">{{item.name}}</text> \t
+        <t-button bind:tap="onDeleteRecipe" data-dayindex="{{dayidx}}" data-recipeindex="{{index}}">删除</t-button> \t
+        <t-button>详情</t-button>
+      </view>
+    </view>
+  </view>
+</view> 
+
+<view class="end-text">到底喽</view>

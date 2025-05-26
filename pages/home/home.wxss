@@ -3,3 +3,48 @@
   background-color: var(--bg-color-demo);
   padding: 16rpx 32rpx;
 }
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 16rpx;
+  gap: 16rpx;
+}
+
+.search {
+  flex: 1;
+}
+
+.search-btn {
+  flex-shrink: 0;
+}
+
+.search-result {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.result-item {
+  padding: 16rpx 32rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.end-text {
+  text-align: center;
+  padding: 50rpx 0;
+  color: #999;
+  font-size: 24rpx;
+}

@@ -1,5 +1,8 @@
 <!--pages/home/home.wxml-->
-<t-search shape="round" class="search" placeholder="搜索菜谱" />
+<view class="search-container">
+  <t-search shape="round" class="search" placeholder="搜索菜谱" resultList="{{searchList}}" bind:change="onChangeValue" />
+  <t-button theme="primary" size="small" class="search-btn" bind:tap="onSearch">搜索</t-button>
+</view>
 
 <t-cell-group theme="card">
   <view wx:for="{{recipes}}" wx:for-index="idx" wx:for-item="recipe">
@@ -9,3 +12,5 @@
 
 <navigator url="../detail/detail?recipeID=76c63bbb6810a27502105bdb57d809c2">详情页面</navigator>
 <navigator url="../test/test">测试页面</navigator>
+
+<view class="end-text">到底喽</view>

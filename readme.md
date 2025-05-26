@@ -61,7 +61,14 @@ project.config.json配置cloudFunctionRoot，指定云函数的文件位置
 右键这个文件夹，选择创建好的云环境。
 右键这个文件夹，新建云函数。
 
-
+### setdata
+能够将修改动态传递到试图层。
+如果要修改数组中某一个元素的值，要把修改的对象写成字符串，然后中括号括起来。
+```
+  let key = "recipeOfDays["+dayindex+"]"
+  this.setData({ [key]:recipeOfDay });
+```
+https://blog.csdn.net/yisimo/article/details/79453896?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-79453896-blog-135450944.235^v43^pc_blog_bottom_relevance_base7&spm=1001.2101.3001.4242.2&utm_relevant_index=3
 
 ### 其他模块
 账号密码模块

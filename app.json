@@ -41,9 +41,11 @@
     "t-cell-group": "tdesign-miniprogram/cell-group/cell-group",
     "t-check-tag": "tdesign-miniprogram/check-tag/check-tag",
     "t-divider": "tdesign-miniprogram/divider/divider",
+    "t-input": "tdesign-miniprogram/input/input",
     "t-search": "tdesign-miniprogram/search/search",
     "t-tag": "tdesign-miniprogram/tag/tag",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
-    "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item"
+    "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog"
   }
 }

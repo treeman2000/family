@@ -7,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    recipes: []
+    recipes: [],
+    recipeNames: [],
+    searchList: [],
+    searchKey: ""
   },
 
   /**
@@ -17,7 +20,28 @@ Page({
     let res = await getRecipeAll()
     console.log("res",res)
     this.setData({recipes: res})
+    // 加到缓存中
+    wx.setStorageSync('recipes', res)
     console.log("this.data.recipes", this.data.recipes)
+    
+    const recipeNames = this.data.recipes.map(recipe => recipe.name)
+    this.setData({recipeNames})
+    wx.setStorageSync('recipeNames', recipeNames)
+    console.log(this.data.recipeNames)
+  },
+  // 搜索框下面候选词的逻辑
+  onChangeValue: function(e) {
+    const { value } = e.detail;
+    this.setData({
+      searchList: value ? this.data.recipeNames.filter((v) => v.includes(value)) : [],
+    });
+    this.setData({searchKey: value})
+  },
+  onSearch: function(){
+    let searchKey = this.data.searchKey
+    this.setData({
+      recipes: searchKey == "" ? wx.getStorageSync('recipes') : wx.getStorageSync('recipes').filter((v) => v.name.includes(searchKey))
+    })
   },
   onClick: function(event){
     console.log(event.target.dataset)
