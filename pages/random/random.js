@@ -16,7 +16,9 @@ Page({
     recipeOfDays: [],
     // 添加菜谱
     searchList: [],
-    searchKey: ""
+    searchKey: "",
+    // 原料清单，二维map，[原料名][单位]数量
+    ingredients: {}
   },
   // 用于调整tabbar的状态
   onShow() {
@@ -59,7 +61,7 @@ Page({
     console.log("recipeOfDays",recipeOfDays)
     recipeOfDays = [...recipeOfDays].sort(() => Math.random() - 0.5).slice(0, this.data.day)
     this.setData({recipeOfDays: recipeOfDays})
-    
+    this.getIngredients()
   },
   generateFoodGroups: function(meats, vegs) {
     const {numMeatPerDay,numVegPerDay,day} = this.data
@@ -125,6 +127,30 @@ Page({
 
     // 把候选框清空
     this.setData({searchList:[]})
-    // todo：添加为什么下标乱飘？
+
+    this.getIngredients()
+  },
+  getIngredients: function(){
+    console.log("getIngredients")
+    let ings = {}
+    for(let recipes of this.data.recipeOfDays){
+      for(let r of recipes){
+        for(let ing of r.ingredients){
+          let recipeName = ing[0]
+          let unit = ing[2]
+          if(recipeName in ings){
+            if(unit in ings[recipeName]){
+              ings[recipeName][unit] += ing1
+            }else{
+              ings[recipeName][unit]=ing1
+            }
+          }else{
+            ings[recipeName]={[unit]:ing[1]}
+          }
+        }
+      }
+    }
+    this.setData({ingredients: ings})
+    console.log(this.data.ingredients)
   }
 })

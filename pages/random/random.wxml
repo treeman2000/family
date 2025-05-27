@@ -1,5 +1,4 @@
 <!--pages/random/random.wxml-->
-<text>pages/random/random.wxml</text>
 
 <t-input label="做饭天数" placeholder="请输入" type="number" bind:change="handleDay"/>
 <t-input label="每天荤菜数" placeholder="请输入" type="number" bind:change="handleMeat"/>
@@ -25,5 +24,16 @@
     </view>
   </view>
 </view> 
+
+<t-text class="day-title">原料清单</t-text>
+<view>
+  <view wx:for="{{ingredients}}" wx:for-index="recipe" class="day-card">
+    {{recipe}}
+    <view wx:for="{{item}}" wx:for-index="unit" wx:for-item="num">
+      {{num}} {{unit}}
+    </view>
+
+  </view>
+</view>
 
 <view class="end-text">到底喽</view>
