@@ -140,9 +140,9 @@ Page({
           let unit = ing[2]
           if(recipeName in ings){
             if(unit in ings[recipeName]){
-              ings[recipeName][unit] += ing1
+              ings[recipeName][unit] += ing[1]
             }else{
-              ings[recipeName][unit]=ing1
+              ings[recipeName][unit]=ing[1]
             }
           }else{
             ings[recipeName]={[unit]:ing[1]}
@@ -152,5 +152,12 @@ Page({
     }
     this.setData({ingredients: ings})
     console.log(this.data.ingredients)
+  },
+  onDetail: function(e) {
+    const { dayindex, recipeindex } = e.currentTarget.dataset;
+    const recipe = this.data.recipeOfDays[dayindex][recipeindex];
+    wx.navigateTo({
+      url: '/pages/detail/detail?recipeID=' + recipe._id
+    });
   }
 })

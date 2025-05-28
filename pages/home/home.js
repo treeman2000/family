@@ -16,7 +16,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options) {
+  async onShow(options) {
     let res = await getRecipeAll()
     console.log("res",res)
     this.setData({recipes: res})
@@ -28,6 +28,15 @@ Page({
     this.setData({recipeNames})
     wx.setStorageSync('recipeNames', recipeNames)
     console.log(this.data.recipeNames)
+
+    // 用于调整tabbar的状态
+    console.log("onshow",typeof this.getTabBar, this.getTabBar())
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      const page = getCurrentPages().pop();
+      this.getTabBar().setData({
+        value: '/' + page.route
+      })
+    }
   },
   // 搜索框下面候选词的逻辑
   onChangeValue: function(e) {
@@ -51,14 +60,5 @@ Page({
       url: '/pages/detail/detail?recipeID=' + event.target.dataset.rid
     })
   },
-  // 用于调整tabbar的状态
-  onShow() {
-    console.log("onshow",typeof this.getTabBar, this.getTabBar())
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      const page = getCurrentPages().pop();
-      this.getTabBar().setData({
-        value: '/' + page.route
-      })
-    }
-  }
+
 })

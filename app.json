@@ -46,6 +46,6 @@
     "t-tag": "tdesign-miniprogram/tag/tag",
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item",
-    "t-dialog": "tdesign-miniprogram/dialog/dialog"
+    "t-textarea": "tdesign-miniprogram/textarea/textarea"
   }
 }

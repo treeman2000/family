@@ -10,7 +10,6 @@
   </view>
 </t-cell-group>
 
-<navigator url="../detail/detail?recipeID=76c63bbb6810a27502105bdb57d809c2">详情页面</navigator>
-<navigator url="../test/test">测试页面</navigator>
+<!-- <navigator url="../test/test">测试页面</navigator> -->
 
 <view class="end-text">到底喽</view>

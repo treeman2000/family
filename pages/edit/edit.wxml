@@ -1,2 +1,66 @@
 <!--pages/edit/edit.wxml-->
-<text>pages/edit/edit.wxml</text>
+<view class="container">
+  <view class="form-group">
+    <view class="form-item">
+      <text class="label">菜谱名称</text>
+      <input class="input" placeholder="请输入菜谱名称" value="{{recipeName}}" bindinput="onNameInput"/>
+    </view>
+
+    <text class="label">标签</text>
+    <view class="tags-container">
+      <t-check-tag
+        wx:for="{{availableTags}}"
+        wx:key="index"
+        size="large"
+        variant="light-outline"
+        content="{{ item }}"
+        checked="{{tags[index]}}"
+        bind:change="onTagChange"
+        data-idx="{{index}}"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="ingredient-header">
+        <text class="label">所需原料</text>
+        <button class="btn-add-row" bindtap="addIngredientRow">添加一行</button>
+      </view>
+      <view class="ingredient-input-group">
+        <view class="ingredient-input-row" wx:for="{{ingredients}}" wx:key="index">
+          <input class="input" placeholder="原料名称" value="{{item.name}}" data-index="{{index}}" bindinput="onIngredientNameInput"/>
+          <input class="input" type="digit" placeholder="数量" value="{{item.amount}}" data-index="{{index}}" bindinput="onIngredientAmountInput" type="number"/>
+          <input class="input" type="digit" placeholder="单位" value="{{item.unit}}" data-index="{{index}}" bindinput="onIngredientUnitInput"/>
+
+          <view class="row-actions">
+            <text class="delete-row" bindtap="removeIngredientRow" data-index="{{index}}">×</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="steps-header">
+        <text class="label">烹饪步骤</text>
+        <button class="btn-add-row" bindtap="addStepRow">添加步骤</button>
+      </view>
+      <view class="steps-input-group">
+        <view class="step-input-row" wx:for="{{steps}}" wx:key="index">
+          <view class="step-input-container">
+            <input class="input" placeholder="请输入步骤描述" value="{{item}}" data-index="{{index}}" bindinput="onStepInput"/>
+            <text class="delete-row" bindtap="removeStepRow" data-index="{{index}}">×</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="label">备注</text>
+      <t-textarea class="textarea" placeholder="请输入备注信息" value="{{notes}}" bind:change="onNotesInput"/>
+    </view>
+  </view>
+
+  <t-button theme="primary" size="large" variant="outline" block bind:tap="saveRecipe">保存</t-button>
+
+</view>
+
+<view class="end-text">到底喽</view>
