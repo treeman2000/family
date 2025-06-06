@@ -1,5 +1,5 @@
 <!--pages/detail/detail.wxml-->
-<text class="title1" >{{recipeInfo.name}}\n</text>
+<text class="title1" >{{recipeInfo.name}}</text>
 
 <view class="tags-container">
 <view wx:for="{{recipeInfo.tags}}" wx:for-index="idx" wx:for-item="itemName" wx:key="*this">
@@ -8,24 +8,42 @@
 </view>
 <t-divider />
 
-<text class="title">原料\n</text>
+<text class="title">原料</text>
 <view wx:for="{{recipeInfo.ingredients}}" wx:for-index="idx" wx:for-item="ingredient">
   {{idx+1}}、{{ingredient[0]}} {{ingredient[1]}} {{ingredient[2]}}
 </view>
 <t-divider />
 
-<text class="title">做法\n</text>
+<text class="title">做法</text>
 <view wx:for="{{recipeInfo.steps}}" wx:for-index="idx" wx:for-item="itemName">
   {{idx+1}}、{{itemName}}
 </view>
 <t-divider />
 
-<text class="title">备注\n</text>
-<view wx:for="{{recipeInfo.note}}" wx:for-index="idx" wx:for-item="itemName">
-  {{idx+1}}、{{itemName}}
+<text class="title">备注</text>
+<view class="notes-container" wx:if="{{recipeInfo.note}}">
+  <text>{{recipeInfo.note}}</text>
+</view>
+<view class="notes-container" wx:else>
+  <text class="empty-note">暂无备注</text>
 </view>
 <t-divider />
-<view class="tags-container">
-<t-button bind:tap="onEdit">编辑</t-button>
-<t-button bind:tap="onDelete">删除</t-button>
+
+<text class="title">外部链接</text>
+<view class="link-container">
+  <t-button theme="light" variant="outline" bind:tap="onCopy" data-platform="xiaohongshu" wx:if="{{recipeInfo.links.xiaohongshu}}">
+    复制小红书链接
+  </t-button>
+  <t-button theme="light" variant="outline" bind:tap="onCopy" data-platform="douyin" wx:if="{{recipeInfo.links.douyin}}">
+    复制抖音链接
+  </t-button>
+  <t-button theme="light" variant="outline" bind:tap="onCopy" data-platform="bilibili" wx:if="{{recipeInfo.links.bilibili}}">
+    复制B站链接
+  </t-button>
+</view>
+<t-divider />
+
+<view class="action-container">
+  <t-button bind:tap="onEdit">编辑</t-button>
+  <t-button bind:tap="onDelete" theme="danger">删除</t-button>
 </view>

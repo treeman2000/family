@@ -27,5 +27,43 @@ Page({
     wx.switchTab({
       url: '/pages/edit/edit'
     })
+  },
+  onCopy(e){
+    const platform = e.currentTarget.dataset.platform
+    const links = this.data.recipeInfo.links || {}
+    const link = links[platform]
+
+    if (!link) {
+      wx.showToast({
+        title: `没有${this.getPlatformName(platform)}链接`,
+        icon: 'none'
+      })
+      return
+    }
+    
+    wx.setClipboardData({
+      data: link,
+      success: () => {
+        wx.showToast({
+          title: `${this.getPlatformName(platform)}链接已复制`,
+          icon: 'success'
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '复制失败，请重试',
+          icon: 'error'
+        })
+      }
+    })
+  },
+
+  getPlatformName(platform) {
+    const platformNames = {
+      xiaohongshu: '小红书',
+      douyin: '抖音',
+      bilibili: 'B站'
+    }
+    return platformNames[platform] || '未知平台'
   }
 })

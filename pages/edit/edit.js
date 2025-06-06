@@ -20,6 +20,11 @@ Page({
     }],
     steps: [],
     notes: '',
+    links: {
+      xiaohongshu: '',
+      douyin: '',
+      bilibili: ''
+    },
     rID: null
   },
 
@@ -99,6 +104,15 @@ Page({
     console.log(this.data.notes)
   },
 
+  onLinkInput(e) {
+    const platform = e.currentTarget.dataset.platform
+    const value = e.detail.value
+    
+    this.setData({
+      [`links.${platform}`]: value
+    })
+  },
+
   // 添加步骤行
   addStepRow() {
     this.setData({
@@ -125,6 +139,7 @@ Page({
 
   // 保存菜谱
   async saveRecipe() {
+    console.log(this.data)
     if (!this.data.recipeName) {
       wx.showToast({
         title: '请输入菜谱名称',
@@ -133,13 +148,15 @@ Page({
       return
     }
 
+    console.log(this.data.notes)
     // convert to db format
     const r = {
       name: this.data.recipeName,
       tags: this.data.availableTags.filter((_, i) => this.data.tags[i]),
       ingredients: this.data.ingredients.map(item => [item.name, item.amount, item.unit]),
       steps: this.data.steps,
-      note: this.data.notes ? '' : this.data.notes.split('\n').filter(note => note.trim() !== '') // 按换行符分割并过滤空行
+      note: this.data.notes || '',
+      links: this.data.links
     };
 
     if(this.data.rID==null){
@@ -158,6 +175,11 @@ Page({
       }],
       steps: [],
       notes: '',
+      links: {
+        xiaohongshu: '',
+        douyin: '',
+        bilibili: ''
+      },
       rID: null
     })
     wx.switchTab({
@@ -196,8 +218,15 @@ Page({
       tags: tags,
       steps: recipe.steps || [], // 添加步骤数据
       notes: recipe.note || '',
+      links: recipe.links || {
+        xiaohongshu: '',
+        douyin: '',
+        bilibili: ''
+      },
       rID: recipe._id
     });
+
+    console.log(this.data)
     
   // 用于调整tabbar的状态
     console.log("onshow",typeof this.getTabBar, this.getTabBar())

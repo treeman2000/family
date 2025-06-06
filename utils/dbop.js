@@ -1,9 +1,9 @@
 wx.cloud.init()
 const db = wx.cloud.database()
-const collctionRecipe = 'recipe'
+const collectionRecipe = 'recipe'
 
 const getRecipeByID = async function(rID){
-  let rInfo = await db.collection(collctionRecipe).where({_id: rID}).get()
+  let rInfo = await db.collection(collectionRecipe).where({_id: rID}).get()
   if(rInfo.data.length == 0 ){
     return null
   }
@@ -12,7 +12,7 @@ const getRecipeByID = async function(rID){
 }
 
 const getRecipeByType = async function(rType){
-  let rInfo = await db.collection(collctionRecipe).where({tags: db.command.all([rType])}).get()
+  let rInfo = await db.collection(collectionRecipe).where({tags: db.command.all([rType])}).get()
   if(rInfo.data.length == 0 ){
     return null
   }
@@ -21,7 +21,7 @@ const getRecipeByType = async function(rType){
 }
 
 const getRecipeByName = async function(rName){
-  let rInfo = await db.collection(collctionRecipe).where({name: rName}).get()
+  let rInfo = await db.collection(collectionRecipe).where({name: rName}).get()
   if(rInfo.data.length == 0 ){
     return null
   }
@@ -31,12 +31,12 @@ const getRecipeByName = async function(rName){
 
 const getRecipeAll = async function(){
   const MAX_LIMIT = 20
-  const countResult = await db.collection(collctionRecipe).count()
+  const countResult = await db.collection(collectionRecipe).count()
   const total = countResult.total
   const batchTimes = Math.ceil(total / MAX_LIMIT)
   const tasks = []
   for (let i = 0; i < batchTimes; i++) {
-    const promise = db.collection(collctionRecipe).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get()
+    const promise = db.collection(collectionRecipe).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get()
     tasks.push(promise)
   }
   const results = await Promise.all(tasks)
@@ -49,7 +49,7 @@ const getRecipeAll = async function(){
 
 const setRecipe = async function(r){
   console.log(r)
-  let rInfo = await db.collection(collctionRecipe).add({
+  let rInfo = await db.collection(collectionRecipe).add({
     data: r
   })
   console.log(rInfo.data)
@@ -67,7 +67,7 @@ const setRecipes = async function(recipeList){
 
 const delRecipeByID = async function(rID){
   try {
-    let res = await db.collection(collctionRecipe).doc(rID).remove()
+    let res = await db.collection(collectionRecipe).doc(rID).remove()
     console.log("删除菜谱成功", res)
     return res
   } catch (error) {
@@ -78,7 +78,7 @@ const delRecipeByID = async function(rID){
 
 const updateRecipeByID = async function(rID, r){
   console.log(rID,r)
-  let res = await db.collection(collctionRecipe).doc(rID).update({data:r})
+  let res = await db.collection(collectionRecipe).doc(rID).update({data:r})
   console.log(res)
   return res
 }

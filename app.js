@@ -48,9 +48,7 @@ App({
           ['鸡蛋', 3, '个'],
           ['面', 300, '克']
         ],
-        tags: ['主食'],
-        steps: ['先洗一洗', '再烧一烧'],
-        note: ['别忘了洗', '别忘了烧']
+        tags: ['主食']
       },
       {
         name: '番茄意大利面',
@@ -240,6 +238,7 @@ App({
     ])
 
     setRecipes(wx.getStorageSync('recipes'))
+    console.log("init data ok")
   },
   onLaunch() {
     // this.initData()

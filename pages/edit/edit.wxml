@@ -28,8 +28,8 @@
       <view class="ingredient-input-group">
         <view class="ingredient-input-row" wx:for="{{ingredients}}" wx:key="index">
           <input class="input" placeholder="原料名称" value="{{item.name}}" data-index="{{index}}" bindinput="onIngredientNameInput"/>
-          <input class="input" type="digit" placeholder="数量" value="{{item.amount}}" data-index="{{index}}" bindinput="onIngredientAmountInput" type="number"/>
-          <input class="input" type="digit" placeholder="单位" value="{{item.unit}}" data-index="{{index}}" bindinput="onIngredientUnitInput"/>
+          <input class="input" type="digit" placeholder="数量" value="{{item.amount}}" data-index="{{index}}" bindinput="onIngredientAmountInput"/>
+          <input class="input" placeholder="单位" value="{{item.unit}}" data-index="{{index}}" bindinput="onIngredientUnitInput"/>
 
           <view class="row-actions">
             <text class="delete-row" bindtap="removeIngredientRow" data-index="{{index}}">×</text>
@@ -56,6 +56,24 @@
     <view class="form-item">
       <text class="label">备注</text>
       <t-textarea class="textarea" placeholder="请输入备注信息" value="{{notes}}" bind:change="onNotesInput"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">外部平台链接</text>
+      <view class="links-container">
+        <view class="link-item">
+          <text class="link-label">小红书链接</text>
+          <t-textarea class="textarea" placeholder="请输入小红书链接" value="{{links.xiaohongshu}}" bind:change="onLinkInput" data-platform="xiaohongshu"/>
+        </view>
+        <view class="link-item">
+          <text class="link-label">抖音链接</text>
+          <t-textarea class="textarea" placeholder="请输入抖音链接" value="{{links.douyin}}" bind:change="onLinkInput" data-platform="douyin"/>
+        </view>
+        <view class="link-item">
+          <text class="link-label">B站链接</text>
+          <t-textarea class="textarea" placeholder="请输入B站链接" value="{{links.bilibili}}" bind:change="onLinkInput" data-platform="bilibili"/>
+        </view>
+      </view>
     </view>
   </view>
 
