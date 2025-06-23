@@ -148,43 +148,73 @@ Page({
       return
     }
 
-    console.log(this.data.notes)
-    // convert to db format
-    const r = {
-      name: this.data.recipeName,
-      tags: this.data.availableTags.filter((_, i) => this.data.tags[i]),
-      ingredients: this.data.ingredients.map(item => [item.name, item.amount, item.unit]),
-      steps: this.data.steps,
-      note: this.data.notes || '',
-      links: this.data.links
-    };
+    try {
+      wx.showLoading({
+        title: '保存中...',
+      })
 
-    if(this.data.rID==null){
-      let res = await setRecipe(r)
-    }else{
-      let res = await updateRecipeByID(this.data.rID, r)
+      console.log(this.data.notes)
+      // convert to db format
+      const r = {
+        name: this.data.recipeName,
+        tags: this.data.availableTags.filter((_, i) => this.data.tags[i]),
+        ingredients: this.data.ingredients.map(item => [item.name, item.amount, item.unit]),
+        steps: this.data.steps,
+        note: this.data.notes || '',
+        links: this.data.links
+      };
+
+      let res;
+      if(this.data.rID==null){
+        res = await setRecipe(r)
+      }else{
+        res = await updateRecipeByID(this.data.rID, r)
+      }
+
+      // 清除本地缓存，确保首页显示最新数据
+      wx.removeStorageSync('recipes')
+      
+      // set to default
+      this.setData({
+        recipeName: '',
+        tags: Array(Object.keys(foodCategories).length).fill(false),
+        ingredients: [{
+          name: '',
+          amount: '',
+          unit: ''
+        }],
+        steps: [],
+        notes: '',
+        links: {
+          xiaohongshu: '',
+          douyin: '',
+          bilibili: ''
+        },
+        rID: null
+      })
+
+      wx.hideLoading()
+      wx.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 1500
+      })
+
+      // 延迟跳转，确保用户看到成功提示
+      setTimeout(() => {
+        wx.switchTab({
+          url: '/pages/home/home',
+        })
+      }, 1500)
+    } catch (error) {
+      wx.hideLoading()
+      console.error('保存失败', error)
+      wx.showToast({
+        title: '保存失败',
+        icon: 'error',
+        duration: 2000
+      })
     }
-    // set to default
-    this.setData({
-      recipeName: '',
-      tags: Array(Object.keys(foodCategories).length).fill(false),
-      ingredients: [{
-        name: '',
-        amount: '',
-        unit: ''
-      }],
-      steps: [],
-      notes: '',
-      links: {
-        xiaohongshu: '',
-        douyin: '',
-        bilibili: ''
-      },
-      rID: null
-    })
-    wx.switchTab({
-      url: '/pages/home/home',
-    })
   },
 
   async onShow() {

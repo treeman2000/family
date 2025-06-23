@@ -12,4 +12,5 @@
 
 <!-- <navigator url="../test/test">测试页面</navigator> -->
 
+<view class="version-text">版本号: {{version}}</view>
 <view class="end-text">到底喽</view>

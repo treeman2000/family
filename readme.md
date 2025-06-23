@@ -75,7 +75,3 @@ https://blog.csdn.net/yisimo/article/details/79453896?utm_medium=distribute.pc_r
 日记、会议记录模块
 衣服模块（子分类，衣服，裤子，美甲，首饰等）
 记账模块（支付宝能导出不）
-
-todo::
-多个链接，多个框，加个名字。
-加个自动识别平台，记下来

@@ -3,7 +3,8 @@ const {setRecipes} = require('utils/dbop')
 
 App({
   globalData: {
-    currentRID : ""
+    currentRID : "",
+    version: "1.1.0"
   },
   initData: function () {
     wx.setStorageSync('recipes', [
